@@ -7,13 +7,18 @@ from sqlalchemyEx.models import User
 
 app = Flask(__name__)
 app.register_blueprint(sqlEx)
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:ok1234@localhost/flask?charset=utf8'  # noqa
+app.config.from_object('settings')
 
 db.init_app(app)
 
 
 @app.route('/')
+def index():
+    users = User.query.all()
+    return jsonify([user.to_dict() for user in users])
+
+
+@app.route('/hello')
 def hello():
     user = User('Test name', 'test@email.com')
     db.session.add(user)

@@ -1,13 +1,15 @@
 from sqlalchemyEx.models import User
+from sqlalchemyEx.models import db
 from flask import Blueprint, jsonify
+from flask import request
 
 sqlEx = Blueprint('sqlalchemyEx', __name__)
+
 
 @sqlEx.route('/getlist')
 def getlist():
     users = User.query.all()
     return jsonify([user.to_dict() for user in users])
-
 
 
 @sqlEx.route('/User', methods=['POST'])
