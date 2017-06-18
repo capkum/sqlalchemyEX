@@ -1,9 +1,10 @@
 import http
-
 from flask import Flask, abort, jsonify
 from sqlalchemyEx import sqlEx
 from sqlalchemyEx.models import db
 from sqlalchemyEx.models import User
+
+
 
 app = Flask(__name__)
 app.register_blueprint(sqlEx)
