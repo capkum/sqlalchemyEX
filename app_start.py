@@ -5,7 +5,6 @@ from sqlalchemyEx.models import db
 from sqlalchemyEx.models import User
 
 
-
 app = Flask(__name__)
 app.register_blueprint(sqlEx)
 app.config.from_object('settings')
